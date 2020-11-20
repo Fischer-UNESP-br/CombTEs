@@ -38,10 +38,12 @@ The user can, then, compare the answers of these tests to obtain the final concl
 
 c) FLEXIBILITY OF CombTEs:
 To parse the initial predictions of RM and HMMER, the "extractHmmerRM.pl" script (available here) can be used to extract and format these predictions.
+WARNING: "extractHmmerRM.pl" works fine parsing results from "version open-4.0.5" of RM and "version 3.1b1" of HMMER ("nhmmer" program, using "--tblout" option).
 
 But, CombTEs is flexible: results from other tools, pipelines, or methods can be used in the combination processes.
 A tool that could also be used with CombTEs is RPS-Blast - for the ones interested in it, the "extractRPSB.pl" script (also available here) can be used to parse its predictions.
-WARNING: if RPS-Blast will be considered in the combination process, delete the comments in front some lines in "CombTEs.pl" - search for "OBS_1" in that script.
+WARNING: "extractRPSB.pl" works fine parsing results from "version 2.10.1+" of RPS-Blast.
+Also, if RPS-Blast is to be considered in the combination process, delete the comments in front some lines in "CombTEs.pl" - search for "OBS_1" in that script.
 
 During execution, CombTEs launches the script(s) to preprocess the results produced by "extractHmmerRM.pl" and "extractRPSB.pl" (when RPS-Blast is used). These scripts are "finalCandidsHmmerRM.pl" and "finalCandidsRpsBlast.pl"; their aim is to generate the final candidates of each tool.
 
