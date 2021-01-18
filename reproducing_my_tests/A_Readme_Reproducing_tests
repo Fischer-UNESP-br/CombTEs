@@ -1,0 +1,145 @@
+REPRODUCING THE RESULTS DESCRIBED IN THE MAIN TEXT AND ITS SUPPLEMENTARY MATERIAL
+
+To reproduce such results, one can either run (now) RepeatMasker, HMMER, and RPS-Blast or simply use results previously obtained.
+
+The "Dmel.zip" and "Tair.zip" files have the complete structure in terms of the needed directories for testing the scripts made available here. Just extract the content of each file.
+
+In each (extracted) main directory (for D.melanogaster and for A.thaliana) you will find scripts and other sub-directories (with the annotations and empty and non-empty ones for the (new) results produced now - the sub-diretories for the used programs have results previously obtained).
+
+
+A) Reproducing the results running the 3 programs:
+
+TOOLS:
+The tests were performed using RepeatMasker (RM), HMMER, and RPS-Blast programs; they were run using their default parameter settings.
+
+
+GENOMES and ANNOTATIONS:
+The used genomes and annotations:
+- for D. melanogaster: downloaded from FlyBase (flybase.org), version 6.15:
+	- ftp://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.15_FB2017_02/fasta/dmel-all-chromosome-r6.15.fasta.gz
+	- ftp://ftp.flybase.net/genomes/Drosophila_melanogaster/dmel_r6.15_FB2017_02/fasta/dmel-all-transposon-r6.15.fasta.gz
+
+- for A. thaliana: downloaded from The Arabidopsis Information Resource (TAIR) (arabidopsis.org), version TAIR10:
+	- ftp://ftp.ensemblgenomes.org/pub/plants/release-48/fasta/arabidopsis_thaliana/dna/
+		(files: "Arabidopsis_thaliana.TAIR10.dna.chromosome.CHROMO_NUM.fa.gz")
+	- https://www.arabidopsis.org/download_files/Genes/Araport11_genome_release/Araport11_GFF3_genes_transposons.201606.gff.gz
+
+	ABOUT "DNA_version-10" and "TRANSPOSONS_version-11" for A. thaliana:
+	the "https://www.arabidopsis.org/download_files/Genes/Araport11_genome_release/README.201606.md" file describes that:
+	"TAIR10_sequence_edits.txt - Same file as in TAIR10 release. There were no chromosome sequence edits from TAIR10 to
+	Araport11. More details in the file itself.
+
+Here, in this folder, the "Annotation_Dmel.tar.xz" and "Annotation_TAIR.tar.xz" files describe the annotations for D. melanogaster and A. thaliana, respectively, in a format ready to be used in the comparisons with predictions of the used tools.
+
+In the tests, **before running the programs**, the chromosomes were split in subsequences of length of 10,000 nt, with an overlapping region of 1,000 nt (using "splitOverlap.pl" script from "scripts" folder).
+
+
+REFERENCE SEQUENCES:
+The reference sequences of LTR-RT were obtained from Repbase (https://www.girinst.org/server/RepBase/), version 18.01, used to build the library for RM and to train the pHMMs (the 3 different types for each superfamily). This version provides the necessary information for the tests: the nucleotide (NT) sequences related to the INTERNAL regions of TEs, the start and end positions of their coding sequences (CDS), and the corresponding TE classification. 
+The sequences of any Drosophila and Arabidopsis were excluded from the sets used to build the library for RM and to train the pHMMs to avoid bias, trying to simulate searches for LTR-RT on a newly sequenced genome.
+
+For RM, each reference sequence was labeled with the corresponding superfamily.
+
+
+ABOUT THE USED pHMMs:
+i) the INTERNAL regions of TEs were used to train the pHMMs corresponding to the ways of selecting reference sequences referred to as "conventional way" and "clustering the conventional way" described in the README file, in the main folder of GitHub (please, see there);
+ii) the CDS were searched for conserved domains of LTR-RT and the ones presenting at least one region recognized as related to conserved domains of LTR-RT were selected to train the pHMMs - please, see more about this way of selecting reference sequences ("clustering CDS regions") in the README file cited above.
+
+The CD-Hit and MAFFT programs were used to cluster and align the sequences of each formed cluster.
+
+The pHMMs resulting from the trainning process using the reference sequences obtained from Repbase are in the files:
+- pHMMs_Dmel.tar.xz: for D. melanogaster;
+- pHMMs_Tair_all_references.tar.xz: for A. thaliana, using ALL reference sequences of Repbase;
+- pHMMs_Tair_only_plants_references.tar.xz: for A. thaliana, using only reference sequences of PLANTS present in Repbase.
+
+
+ABOUT RUNNING RPS-Blast:
+RPS-Blast uses a database to search for conserved domains of protein in a query sequence. The user can download the original PSSM base available at CDD (https://www.ncbi.nlm.nih.gov/Structure/cdd/cdd_help.shtml). However, using it, RPS-Blast may take hours to finish.
+An alternative: to use the customized database available here ("database_RPSB.tar.xz" file). This database considers only the following conserved domains of LTR-RT (used in the tests):
+- Bel-PAO: DUF1759, Peptidase_A17, DUF1758, RT_pepA17;
+- Copia: Retrotran_gag, gag_pre-integrs, RVT_2, RNase_HI_RT_Ty1;
+- Gypsy: Retrotrans_gag, gag-asp_proteas, retropepsin_like, RP_Saci_like, RVP_2, RT_LTR, RVT_1, RVT_3, RNase_HI_RT_Ty3, RNase_HI_like.
+And also rve ("integrase"), common for Bel-PAO, Copia, and Gypsy.
+
+How to run RPS-Blast:
+you can use:
+> ./rpstblastn -query INPUT_FASTA_FILE_NAME -db mydb -outfmt "7 sacc stitle qframe evalue bitscore qstart qend qlen sstart send" -out OUTPUT_FILE_NAME
+In this command, "mydb" parameter refers to "mydb.pal" file (available inside the "database_RPSB.tar.xz" file) - for the command above, "mydb.pal" must be in the same directory of "rpstblastn" program.
+
+
+After running the 3 programs, insert their results (the raw data) inside the corresponding sub-directory (for example, inside "Results_HMMER").
+WARNING: the names of the files with these raw data must follow the format of the names of the files inside those sub-directories - see there.
+
+
+B) Reproducing the results using initial predictions previously obtained:
+In this option, since the 3 programs would not be run, the initial predictions related to each program are already inside the corresponding sub-directory (e.g., "Results_HMMER").
+
+Observe that:
+i) files with "Complete" in their names correspond to results from running HMMER using only the pHMMs related to the way of obtaining reference sequences called "conventional way" (see above);
+ii) for A. thaliana, several sub-directories have 2 other sub-directories: "All_references" and "Only_plants"; they have results related to run HMMER and RepeatMasker on the chromosomes using either ALL the reference sequences present in Repbase or the ones related to PLANTS only.
+
+
+C) Running the needed scripts:
+The scripts made available in the "scripts" directory received adaptations to run for each situation described in the manuscript: different organisms and different reference sequences used in the tests.
+
+Despite the way the results from the 3 programs were obtained (running again or not the 3 programs), the following sequence of commands should be used - after extracting the complete directory structure from the "Dmel.zip" and "Tair.zip" files, go to a main directory ("Dmel" or "Tair") and run:
+
+For "Dmel":
+perl Results_HMMER/extractHmmerRM.pl 
+perl Results_HMMER/extractHmmerRM_Complete.pl
+
+perl Results_RepeatMasker/extractHmmerRM.pl
+
+perl Results_Rpsblast/extractRPSB.pl
+
+perl CombTEs.pl 
+perl CombTEs_Complete.pl 
+
+perl compareCandidatesDmel.pl 
+perl compareCandidatesDmel_Complete.pl 
+
+perl compareFNsDmel.pl 
+perl compareFNsDmel_Complete.pl 
+
+perl compareFPsDmel.pl 
+perl compareFPsDmel_Complete.pl 
+
+perl compareGroupsDmel.pl
+perl compareGroupsDmelGoodMetrics.pl
+
+
+
+For "Tair":
+perl Results_HMMER/All_references/extractHmmerRM_all-refers.pl 
+perl Results_HMMER/All_references/extractHmmerRM_all-refers_Complete.pl 
+perl Results_HMMER/Only_plants/extractHmmerRM_only-plants.pl 
+
+perl Results_RepeatMasker/All_references/extractHmmerRM_all-refers.pl
+perl Results_RepeatMasker/Only_plants/extractHmmerRM_only-plants.pl 
+
+perl CombTEs_All_references.pl 
+perl CombTEs_Complete_All_references.pl 
+perl CombTEs_Only_plants.pl 
+
+perl compareCandidatesTair_All_references.pl 
+perl compareCandidatesTair_Complete_All_references.pl 
+perl compareCandidatesTair_Only_plants.pl 
+
+perl compareFNsTair_All_references.pl 
+perl compareFNsTair_Complete_All_references.pl 
+perl compareFNsTair_Only_plants.pl 
+
+perl compareFPsTair_All_references.pl 
+perl compareFPsTair_Complete_All_references.pl 
+perl compareFPsTair_Only_plants.pl 
+
+
+
+After that, the results shown in the ALL tables of the Supplementary Material will be in the sub-directories:
+Dmel/X_Tables_S1-S2
+Dmel/X_Tables_S7-S8
+Dmel/X_Tables_S9
+Tair/X_Tables_S3-S4
+Tair/X_Tables_S5-S6
+
+
