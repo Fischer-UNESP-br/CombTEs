@@ -1,0 +1,28 @@
+TESTING CombTEs:
+
+The files in this folder can be used as examples to test CombTEs ("CombTEs.pl") and its associated scripts ("finalCandidsHmmerRM.pl" and "finalCandidsRpsBlast.pl") - they are in the "scripts" folder.
+These files contain the results from running RepeatMasker, HMMER, and RPS-Blast programs on the "3R chromosome" (with 32.08 Mbp) of D.melanogaster (downloaded from Flybase database), version "r6.15" (i.e., you do not need to run those programs).
+
+Before running those programs, this chromosome was split (using "splitOverlap.pl") in subsequences of length 10,000 nt, with an overlapping region of 1,000 nt.
+
+For RepeatMasker and HMMER, the name of each file is related to the considered superfamily and used tool.
+"RPSB.out" is the output file of RPS-Blast.
+
+To test CombTES just:
+1) run the "extractHmmerRM.pl" and "extractRPSB.pl" scripts (to parse the cited files, extracting and formating the initial predictions):
+	- for RepeatMasker and HMMER:
+		> perl extractHmmerRM.pl TOOL SUPERFAM "file_superfam_tool"
+		(for example: > perl extractHmmerRM.pl HMMER Copia Copia_HMER.tbl)
+	- for RPS-Blast:
+		> perl extractRPSB.pl "output_file_rpsblast"
+		(for example: perl extractRPSB.pl RPSB.out)
+
+2) run "CombTEs.pl" - it launches "finalCandidsHmmerRM.pl" and "finalCandidsRpsBlast.pl", producing the resulting combined predictions for the 3 programs (the "FinalClassification.txt" and "FinalClassificationTabular.txt" files - "FinalClassificationTabular.txt" can be opened as a spreadsheet).
+
+WARNING: before running "CombTEs.pl", delete the comments ("#") in front of the following FOUR lines in the "ParamsGeneral.pm" file (package):
+#@otherTools = ("RpsBlast"); # if "RPS-Blast" is used: delete the comment ("#") in front of this line.
+#$outFileNamesOthers{'RpsBlast'} = ("THREE"); # if "RPS-Blast" is used: delete the comment ("#") in front of this line.
+#$filterOtherTools{'RpsBlast'} = 1.0e-05; # if "RPS-Blast" is used: delete the comment ("#") in front of this line.
+#$goodMetrOtherTools{'RpsBlast'} = 1.0e-20; # if "RPS-Blast" is used: delete the comment ("#") in front of this line.
+
+Several other parameters can be changed in the "ParamsGeneral.pm" package, for example, the filters for the initial predictions from RepeatMasker, HMMER, and RPS-Blast.
