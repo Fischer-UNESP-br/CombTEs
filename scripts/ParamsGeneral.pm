@@ -21,7 +21,7 @@ our @combClassif = (@superfamilies, "inconclusive", "Bel/Copia", "Bel/Gypsy", "C
 
 
 
-our $usingSubseqs = "yes"; # when using subsequences of a long sequence (OR: use $usingSubseqs = "no" for a long sequence and also for general small sequences)
+our $usingSubseqs = "yes"; # when using subsequences of a long sequence (OR: use $usingSubseqs = "no" for a long sequence)
 my  $lengthSubseq = 10000; # length of the subsequences.
 our $overlap      = 1000;  # length of the overlap region.
 our $limit        = $lengthSubseq - $overlap;

@@ -30,5 +30,5 @@ $domains{'Gypsy'} = 'Retrotrans_gag|gag-asp_proteas|retropepsin_like|RP_Saci_lik
 
 ####### used in "finalCandidsRpsBlast.pl":
 #   $filterRpsBlast = 1.0e-05 (default) - to filter RPS-Blast's predictions based on e-values - CHANGE IT IN "ParamsGeneral.pm".
-our $distPredsRPSB  = 1300; # maximum distance between 2 predictions to consider them inside the SAME candidate (default = 300);
+our $distPredsRPSB  = 300; # maximum distance between 2 predictions to consider them inside the SAME candidate (default = 300);
 
