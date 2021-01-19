@@ -123,7 +123,6 @@ foreach my $tool (@otherTools) {
 		}
 	} # FOREACH my $tool (@tools)
 
-##    sorting the candidates
 	my @auxSorted = sort{ $a->{from} <=> $b->{from} } @allCandid;
 	my @sortedAllCandid = ();
 	foreach my $lineAux (@auxSorted) { push (@sortedAllCandid, $lineAux->{line}); }
@@ -298,7 +297,6 @@ foreach my $tool (@otherTools) {
 		print CLASS "\n";
 	}
 
-## closing all output files
 	foreach my $fileName (@outFileNames) { close ($filehandles{$fileName}); }
 	close (CLASS);
 	close (CLASSTAB);
