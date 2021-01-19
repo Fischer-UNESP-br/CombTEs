@@ -344,7 +344,6 @@ if ($usingSubseqs eq "yes") { # ONLY for subsequences from a long sequence
 		}
 	} # FOR (my $i = 0; $i < $qtt; $i++)
 
-##	sorting "@candidSuperfam": it is necessary for RepeatMasker
 	my @auxSorted = sort{$a->{from} <=> $b->{from}} @candidSuperfam;
 	foreach my $lineAux (@auxSorted) { print PREDNO $lineAux->{line}."\n"; }
 

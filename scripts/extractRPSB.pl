@@ -294,7 +294,6 @@ if ($usingSubseqs eq "yes") { # ONLY for subsequences from a long sequence
 		}
 	}
 
-##    sorting predictions of "@candidSuperfam"
 	my @auxSorted = sort{$a->{from} <=> $b->{from}} @candidSuperfam;
 	foreach my $lineAux (@auxSorted) { print PREDNO $lineAux->{line}."\n"; }
 
