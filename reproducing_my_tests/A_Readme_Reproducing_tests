@@ -82,7 +82,7 @@ ii) for A. thaliana, several sub-directories have 2 other sub-directories: "All_
 C) Running the needed scripts:
 The scripts made available in the "scripts" directory received adaptations to run for each situation described in the manuscript: different organisms and different sets of reference sequences.
 
-Despite the way the raw results from the 3 programs are obtained (running again the 3 programs or using the ones made available here), the "reproducingDmel.pl" and "reproducingTair.pl" scripts can be run to generate the necessary files - after extracting the complete directory structure from the "Dmel.zip" and "Tair.zip" files, go to a main directory ("Dmel" or "Tair") and run the corresponding script.
+Despite the way the raw results from the 3 programs are obtained (running them again or using the ones made available here), the "reproducingDmel.pl" and "reproducingTair.pl" scripts can be run to generate the necessary files - after extracting the complete directory structure from the "Dmel.zip" and "Tair.zip" files, go to a main directory ("Dmel" or "Tair") and run the corresponding script.
 
 For "Dmel":
 > perl reproducingDmel.pl
@@ -140,7 +140,7 @@ perl compareFPsTair_Only_plants.pl
 
 
 
-After that, the results shown in the ALL tables of the Supplementary Material will be in the files of the sub-directories:
+After that, the results shown in ALL tables of the Supplementary Material will be in the files of the sub-directories:
 Dmel/X_Tables_S1-S2
 Dmel/X_Tables_S7-S8
 Dmel/X_Tables_S9
