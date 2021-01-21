@@ -87,56 +87,58 @@ Despite the way the raw results from the 3 programs are obtained (running them a
 For "Dmel":
 > perl reproducingDmel.pl
 
-The following sequence of commands will be executed:
-perl Results_HMMER/extractHmmerRM.pl 
-perl Results_HMMER/extractHmmerRM_Complete.pl
+The following scripts will be lauched:
 
-perl Results_RepeatMasker/extractHmmerRM.pl
+Results_HMMER/extractHmmerRM.pl 
+Results_HMMER/extractHmmerRM_Complete.pl
 
-perl Results_Rpsblast/extractRPSB.pl
+Results_RepeatMasker/extractHmmerRM.pl
 
-perl CombTEs.pl 
-perl CombTEs_Complete.pl 
+Results_Rpsblast/extractRPSB.pl
 
-perl compareCandidatesDmel.pl 
-perl compareCandidatesDmel_Complete.pl 
+CombTEs.pl 
+CombTEs_Complete.pl 
 
-perl compareFNsDmel.pl 
-perl compareFNsDmel_Complete.pl 
+compareCandidatesDmel.pl 
+compareCandidatesDmel_Complete.pl 
 
-perl compareFPsDmel.pl 
-perl compareFPsDmel_Complete.pl 
+compareFNsDmel.pl 
+compareFNsDmel_Complete.pl 
 
-perl compareGroupsDmel.pl
-perl compareGroupsDmelGoodMetrics.pl
+compareFPsDmel.pl 
+compareFPsDmel_Complete.pl 
+
+compareGroupsDmel.pl
+compareGroupsDmelGoodMetrics.pl
 
 
 For "Tair":
 > perl reproducingTair.pl
 
-The following sequence of commands will be executed:
-perl Results_HMMER/All_references/extractHmmerRM_all-refers.pl 
-perl Results_HMMER/All_references/extractHmmerRM_all-refers_Complete.pl 
-perl Results_HMMER/Only_plants/extractHmmerRM_only-plants.pl 
+The following scripts will be lauched:
 
-perl Results_RepeatMasker/All_references/extractHmmerRM_all-refers.pl
-perl Results_RepeatMasker/Only_plants/extractHmmerRM_only-plants.pl 
+Results_HMMER/All_references/extractHmmerRM_all-refers.pl 
+Results_HMMER/All_references/extractHmmerRM_all-refers_Complete.pl 
+Results_HMMER/Only_plants/extractHmmerRM_only-plants.pl 
 
-perl CombTEs_All_references.pl 
-perl CombTEs_Complete_All_references.pl 
-perl CombTEs_Only_plants.pl 
+Results_RepeatMasker/All_references/extractHmmerRM_all-refers.pl
+Results_RepeatMasker/Only_plants/extractHmmerRM_only-plants.pl 
 
-perl compareCandidatesTair_All_references.pl 
-perl compareCandidatesTair_Complete_All_references.pl 
-perl compareCandidatesTair_Only_plants.pl 
+CombTEs_All_references.pl 
+CombTEs_Complete_All_references.pl 
+CombTEs_Only_plants.pl 
 
-perl compareFNsTair_All_references.pl 
-perl compareFNsTair_Complete_All_references.pl 
-perl compareFNsTair_Only_plants.pl 
+compareCandidatesTair_All_references.pl 
+compareCandidatesTair_Complete_All_references.pl 
+compareCandidatesTair_Only_plants.pl 
 
-perl compareFPsTair_All_references.pl 
-perl compareFPsTair_Complete_All_references.pl 
-perl compareFPsTair_Only_plants.pl 
+compareFNsTair_All_references.pl 
+compareFNsTair_Complete_All_references.pl 
+compareFNsTair_Only_plants.pl 
+
+compareFPsTair_All_references.pl 
+compareFPsTair_Complete_All_references.pl 
+compareFPsTair_Only_plants.pl 
 
 
 
