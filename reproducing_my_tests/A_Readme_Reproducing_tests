@@ -187,7 +187,7 @@ An observation about the number "550(TPs EXCLUSIVE of each tool)": in the mentio
 	General total of **FNs** EXCLUSIVE of:
 		HMMER: 30
 		RepeatMasker: 520
-the **FNs** EXCLUSIVE for a tool are the **TPs** (correct predictions) EXCLUSIVE for the other tool.
+the **FNs** (missed annotations) EXCLUSIVE for a tool are the **TPs** (predicted annotations) EXCLUSIVE for the other tool.
 
 
 II) For Tables S3 and S4 and also for Tables S5 and S6 for "Tair": equivalent analyses.
