@@ -89,12 +89,12 @@ For "Dmel":
 
 The following scripts will be lauched:
 
-Results_HMMER/extractHmmerRM.pl 
-Results_HMMER/extractHmmerRM_Complete.pl
+extractHmmerRM_HMMER.pl
+extractHmmerRM_HMMER_Complete.pl
 
-Results_RepeatMasker/extractHmmerRM.pl
+extractHmmerRM_RM.pl
 
-Results_Rpsblast/extractRPSB.pl
+extractRPSB.pl
 
 CombTEs.pl 
 CombTEs_Complete.pl 
@@ -117,12 +117,12 @@ For "Tair":
 
 The following scripts will be lauched:
 
-Results_HMMER/All_references/extractHmmerRM_all-refers.pl 
-Results_HMMER/All_references/extractHmmerRM_all-refers_Complete.pl 
-Results_HMMER/Only_plants/extractHmmerRM_only-plants.pl 
+extractHmmerRM_all-refers_HMMER.pl
+extractHmmerRM_all-refers_HMMER_Complete.pl
+extractHmmerRM_only-plants_HMMER.pl
 
-Results_RepeatMasker/All_references/extractHmmerRM_all-refers.pl
-Results_RepeatMasker/Only_plants/extractHmmerRM_only-plants.pl 
+extractHmmerRM_all-refers_RM.pl
+extractHmmerRM_only-plants_RM.pl
 
 CombTEs_All_references.pl 
 CombTEs_Complete_All_references.pl 
