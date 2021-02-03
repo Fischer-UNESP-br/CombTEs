@@ -11,14 +11,16 @@ use strict;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT_OK = qw($varExtr $minOverlPred %domains $distPredsRPSB);
-
+our @EXPORT_OK = qw($varExtr $maxPercOutOverlap $maxRegionOutOverlap %domains $distPredsRPSB);
 
 
 ####### used in "extractRPSB.pl":
-our $varExtr = 50; # to allow small variation between respective extremities for cases of overlapping between 2 predictions (default= 50).
-our $minOverlPred = 100; # minimum value to consider that there is overlapping between two predictions (default = 100).
+our $varExtr = 30; # to allow small variation between respective extremities for cases of overlap between 2 predictions (default= 30).
+our $maxPercOutOverlap = 0.20; # percentage used to calculate the maximum size allowed for the region outside the overlapping region, to consider the overlap as (possibly) acceptable (default = 0.20 == 20% - a lower value would increase the number of predictions to be considered in the following analyses).
+our $maxRegionOutOverlap = 100; # (predefined) maximum length allowed for region(s) outside the overlapping region between 2 predictions (default = 100 - a lower value would increase the number of predictions to be considered in the following analyses).
 #   $usingSubseqs = "yes"(default) - CHANGE IT IN "ParamsGeneral.pm".
+
+
 
 ####### Conserved domains considered in the analyses (after running RPS-Blast):
 our %domains = ();

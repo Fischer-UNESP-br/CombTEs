@@ -4,7 +4,7 @@
 
 # Usage: perl CombTEs.pl
 
-# This script was originally aimed to process results and produce TE candidates of HMMER and RepeatMasker programs.
+# This script was originally aimed to process results from HMMER and RepeatMasker programs and, then, produce TE candidates for these tools.
 
 # However, it can deal with TE candidates from other tools as well, since their final results (CANDIDATEs) are in the format:
 # CANDIDATE_1 - FROM: pos_INIT - TO: pos_FINAL - LENGTH: length - SENSE: Direct/Reverse - CLASSIFICATION: superfam_A
@@ -19,7 +19,7 @@
 # ...
 # "CANDIDATE_1", "CANDIDATE_2", etc. must be sorted by their "FROM" positions ("pos_INIT") inside the query sequence and the value of "METRICS" ("metr") would be used when filtering the predictions before producing the final candidates for each tool.
 
-# The predictions ("PREDIC") that make up each "CANDIDATE" must be sorted by their "FROM" positions; then, the "FROM" position ("pos_from") of the first prediction (i.e., the lowest value among the "FROM" positions of all "PREDIC") of a CANDIDATE will be the "FROM" position ("pos_INIT") of that CANDIDATE. For the "TO" position ("pos_FINAL") of a CANDIDATE, select the highest value among the "TO" position ("anyPos") of all "PREDIC".
+# The predictions ("PREDIC") that make up each "CANDIDATE" must be sorted by their "FROM--" positions; then, the "FROM--" position ("pos_from") of the first prediction (i.e., the lowest value among the "FROM--" positions of all "PREDIC") of a CANDIDATE will be the "FROM: " position ("pos_INIT") of that CANDIDATE. For the "TO: " position ("pos_FINAL") of a CANDIDATE, select the highest value among the "TO--" position ("anyPos") of all "PREDIC".
 
 # WARNING: two things must be done for CombTEs works fine with a new tool:
 # i) change the following parameters in the "ParamsGeneral.pm" file: "@otherTools", "%outFileNamesOthers", "%filterOtherTools", and "%goodMetrOtherTools" (see explanation in "ParamsGeneral.pm");
@@ -27,7 +27,7 @@
 
 # For example, in the case of RPS-Blast program, the “finalCandidsRpsBlast.pl” script (also provided here) can be used to generate the final candidates in such a format.
 
-# This script launches the "finalCandidsHmmerRM.pl" script, which generates the final candidates of HMMER and RepeatMasker, for all considered superfamilies (see more about the input files for "finalCandidsHmmerRM.pl" in such a script).
+# CombTEs.pl launches the "finalCandidsHmmerRM.pl" script (and also other ones, like “finalCandidsRpsBlast.pl”), which generates the final candidates for HMMER and RepeatMasker (and also for RPS-Blast, if desirable), for all considered superfamilies (see more about the input files for "finalCandidsHmmerRM.pl" in it).
 
 # If RPS-Blast is used in the searches for LTR-RT, delete the comments in front of the lines .... (search for "OBS_1" below).
 
@@ -105,7 +105,7 @@ foreach my $tool (@otherTools) {
 # WHEN using RPS-Blast: CombTEs assumes that "extractRPSB.pl" was used to extract and format the predictions from RPS-Blast and, then, its output file, with the conserved domains, was named "ConservedDomains_NoRedund.pred", to be used by "finalCandidsRpsBlast.pl":
 		elsif ($tool eq "RpsBlast") { @candidSpfam = `perl finalCandidsRpsBlast.pl`; }
 # OBS_2 (a):
-# WHEN a different tool ("otherTOOL") is used to search for LTR-RT, the user must provide the correspondent script to process the initial candidates of this new tool; the name of the new script will replace "scriptOtherTOOL" (if the new script is written in Perl) in the next line (and then, DELETE the comment ("#") in front of the next line):
+# WHEN a different tool ("otherTOOL") is used to search for LTR-RT, the user must provide the correspondent script ("scriptOtherTOOL") to produce the initial candidates of this new tool; below, "perl scriptOtherTOOL" could be used to run this new script, when written in Perl - using another language, just replace "perl scriptOtherTOOL" with the appropriate way to run it (like "python scriptOtherTOOL") - and, then, DELETE the comment ("#") in front of the next line:
 #		elsif ($tool eq "otherTOOL") { @candidSpfam = `perl scriptOtherTOOL`; }
 
 		my ($from, $lineCand);
@@ -127,7 +127,7 @@ foreach my $tool (@otherTools) {
 	my @sortedAllCandid = ();
 	foreach my $lineAux (@auxSorted) { push (@sortedAllCandid, $lineAux->{line}); }
 
-########### producing the groups of the final classification
+########### producing the groups of the final classification ###########
 	my %classif = ();
 	foreach my $clsf (@classSpfam) { $classif{$clsf} = 0; }
 
@@ -216,7 +216,7 @@ foreach my $tool (@otherTools) {
 			print $FILEtoWRITE $descrGroup;
 
 
-######## for the CSV file
+###	for the CSV file
 			my $descrGroupTab = "$group,$fromGroup,$toGroup,$lenGroup,$senseGroup,$finalClass,$finalTools,";
 
 			my %toolsGoodMetr = (); # specification of the tools with "at least one GOOD metrics"
@@ -280,10 +280,10 @@ foreach my $tool (@otherTools) {
 
 		$i++;
 	} # WHILE ($i < $qttCandid)
-########### END of producing the groups of the final classification
+########### END of producing the groups of the final classification ###########
 
 
-## extra output info:
+###  extra output info:
 	print CLASS "#####################################################\n\n";
 
 	print CLASS "SUMMARY OF THE GENERATED GROUPS:\n\n";
