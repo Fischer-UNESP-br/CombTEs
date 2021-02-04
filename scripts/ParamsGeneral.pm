@@ -11,12 +11,10 @@ use strict;
 use warnings;
 
 use Exporter qw(import);
-our @EXPORT_OK = qw(@superfamilies @combClassif $usingSubseqs $overlapBetwSubseqs $limitForSubseq @tools @outFileNames @otherTools %outFileNamesOthers %filterTools %filterOtherTools %goodMetrTools %goodMetrOtherTools $distBetweenCands);
+our @EXPORT_OK = qw(@superfamilies $usingSubseqs $overlapBetwSubseqs $limitForSubseq @tools @outFileNames @otherTools %outFileNamesOthers %filterTools %filterOtherTools %goodMetrTools %goodMetrOtherTools $distBetweenCands);
 
 
 our @superfamilies = ("Bel", "Copia", "Gypsy");
-our @combClassif = (@superfamilies, "inconclusive", "Bel/Copia", "Bel/Gypsy", "Copia/Gypsy", "Bel/Copia/Gypsy"); # if a new superfamily is included in the analyses, insert ALL possible combinations with the other superfamilies in this array.
-
 
 
 our $usingSubseqs = "yes"; # when using subsequences of a long sequence (OR: use $usingSubseqs = "no" for a long sequence).
@@ -25,21 +23,19 @@ our $overlapBetwSubseqs = 1000;  # length of the original overlapping region bet
 our $limitForSubseq = $lengthSubseq - $overlapBetwSubseqs;
 
 
-
 our @tools = ("HMMER", "RepeatMasker");
 our @outFileNames  = ("ONE", "TWO"); # when using only HMMER and RepeatMasker.
+
 
 ####
 # IF "RPS-Blast" is to be used in the analyses, search for "RPS-Blast" below and do the requested action.
 ####
-
 our @otherTools = (); # if a new tool is to be used in the analyses, insert its name in this array - DO NOT COMMENT THIS LINE.
 #@otherTools = ("RpsBlast"); # if "RPS-Blast" is used: delete the comment ("#") in front of this line.
 #@otherTools = ("otherTOOL_1"); # and so on.
 our %outFileNamesOthers = (); # when using OTHER tools - DO NOT COMMENT THIS LINE.
 #$outFileNamesOthers{'RpsBlast'} = ("THREE"); # if "RPS-Blast" is used: delete the comment ("#") in front of this line.
 #$outFileNamesOthers{'otherTOOL_1'} = ("FOUR"); and so on.
-
 
 
 # change HERE the filter values for the specific tool:
@@ -51,7 +47,6 @@ our %filterOtherTools = (); # if a new tool is used in the analyses, insert its 
 #$filterOtherTools{'otherTOOL_1'} = "filter_value"; # filter considering the used metrics of other tool.
 
 
-
 # to set the "good metrics" for HMMER and RepeatMasker:
 # (the term "good metrics" for a tool is used here to define the value of the metrics used by that tool for which the user would consider a prediction as (possibly) a correct one; for example, for "$goodMetrTools{'HMMER'} = 1.0e-20", the sequences predicted by HMMER with E-values equal or lower than "1.0e-20" would be considered correct ones by that user):
 our %goodMetrTools = ();
@@ -60,7 +55,6 @@ $goodMetrTools{'RepeatMasker'} = 400;
 our %goodMetrOtherTools = (); # if a new tool is used, insert its "good metrics" value in this hash - DO NOT COMMENT THIS LINE.
 #$goodMetrOtherTools{'RpsBlast'} = 1.0e-20; # if "RPS-Blast" is used: delete the comment ("#") in front of this line.
 #$goodMetrOtherTools{'otherTOOL_1'} = "filterValue";
-
 
 
 our $distBetweenCands = 500; # maximum distance from a candidate to the next one to consider them inside a SAME FINAL GROUP.
