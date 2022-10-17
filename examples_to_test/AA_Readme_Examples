@@ -1,0 +1,24 @@
+TESTING CombTEs:
+
+The 7 files ("*.out" and "*.tbl") in this folder ("Examples_to_test") contain the results from running RepeatMasker, HMMER, and RPS-Blast programs on the "3R chromosome" (with 32.08 Mbp) of D.melanogaster (downloaded from Flybase database), version "r6.15" (i.e., you do not need to run those programs). These files can be used as examples to test CombTEs ("CombTEs.pl") and its associated scripts ("finalCandidsHmmerRM.pl" and "finalCandidsRpsBlast.pl") - these 3 scripts are into the "Scripts" folder.
+
+The libraries and models used by those 3 programs were built aimed to search for LTR-RT TEs of the Bel-PAO, Copia, and Gypsy superfamilies. For HMMER, the pHMMs were trained considering 3 different types of strategies; then, we see 3 different "query names" in the output file from HMMER.
+
+For RepeatMasker and HMMER, the name of each file is related to the considered superfamily and used tool (e.g., "Bel_HMMER.tbl").
+"AllTogether_RPSB_3R.out" is the output file of RPS-Blast (its results show all the superfamilies together).
+
+To test CombTES just:
+1) run the "extractHmmerRM.pl" and "extractRPSB.pl" scripts (to parse the cited files, extracting and formating the initial predictions):
+	- for RepeatMasker and HMMER:
+		> perl extractHmmerRM.pl TOOL SUPERFAM "file_superfam_tool"
+		(for example: > perl extractHmmerRM.pl HMMER Copia Copia_HMMER_3R.tbl)
+		(for example: > perl extractHmmerRM.pl RepeatMasker Bel Bel_RepeatMasker_3R.out)
+	- for RPS-Blast:
+		> perl extractRPSB.pl "output_file_rpsblast"
+		( > perl extractRPSB.pl AllTogether_RPSB_3R.out)
+
+2) run "CombTEs.pl" - it launches the "finalCandidsHmmerRM.pl" and "finalCandidsRpsBlast.pl" scripts, producing 2 files with the resulting combinations using predictions from the 3 used programs: the "FinalClassification.txt" and "FinalClassificationCSV.csv" files (the last one can be opened as a spreadsheet) - these 2 files are available in this folder "Examples_to_test".
+
+
+Several parameters can be changed in the "ParamsGeneral.pm", "ParamsHmmerRM.pm", and "ParamsRpsblast.pm" packages; for example, the ones aimed to filter the initial predictions from RepeatMasker, HMMER, and RPS-Blast.
+
