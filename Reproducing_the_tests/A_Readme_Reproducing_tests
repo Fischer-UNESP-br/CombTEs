@@ -97,5 +97,3 @@ For example, for the "comparedGroupsGoodMetrics-THREE.txt" file (results from co
 the line:
 "TOTAL --- Preds: 1817 -->> FPs: 520 -->> FPs with good metrics: 520 (100%)"
 means that, for the used "good metrics", from a total of 1,817 combined predictions, 520 (28.6%) were initially defined as FP ones but 520 (100%) present at least a metrics considered as a good one.
-
-
